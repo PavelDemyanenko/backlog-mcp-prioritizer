@@ -1,5 +1,9 @@
 # YouTrack sandbox (real API, local only)
 
+Why: all tracker tests use hand-written WireMock fixtures; nothing would notice if they drifted
+from what a real YouTrack returns. The sandbox checks the fixtures against the real API with
+synthetic data only, outside CI (the image is ~2 GB). E2E tests and CI stay on WireMock.
+
 WireMock fixtures are hand-written. This sandbox runs a real YouTrack (JetBrains image, free tier),
 seeds it with the Golden Dataset and runs the same contract (`GoldenBacklogContract`) against it.
 

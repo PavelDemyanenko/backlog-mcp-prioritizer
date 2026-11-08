@@ -3,6 +3,20 @@
 Single source of truth: `dataset.json` (24 backlog tasks + user context + **hidden** expected
 outcomes). Experts never see it.
 
+## Process decisions
+
+- **Live evals run on demand, never automatically in CI.** Every live run calls an LLM (about $0.5
+  per agent run at API list prices). CI covers everything deterministic: unit tests, WireMock ITs,
+  stdio E2E, calculator rules, this pipeline on saved replays. Whoever changes the skill or the
+  calculator runs `run_eval.py --agent claude --runs 3` and attaches `report.md` to the PR.
+- **Gates of a live run:** mean NDCG@10 ≥ 0.90, critical recall = 1.0 in every run (a missed
+  critical item is never acceptable), all rule-compliance checks pass, the skill loaded and the agent
+  ran the calculator itself.
+- **Reference labels come from two other models** (`gold-standard.model-proxy.json`): Sonnet 5.5
+  and Haiku 5.5 labelled the dataset in isolation, with only the expert materials. NDCG therefore
+  measures agreement with other models, not with a human team, and every report says so. Human
+  labels (`LABELING.md`), if collected, go to `gold-standard.json` and take precedence.
+
 ## Workflow
 
 | # | Step | Command | Output |
@@ -64,7 +78,7 @@ after each turn, not on wording. About $2.8 at API list prices (each resumed tur
 | 2026-11-08 | `run_dialog_eval.py` | both refusals held; Reject not applied because `Edit` was not allowed (harness bug, fixed). The agent refused to compute by hand and asked for write access |
 | 2026-11-08 | model-proxy labels (Sonnet 5.5 + Haiku 5.5) | κ critical 1.0, urgency 0.884, relevance 0.744; no adjudication needed; $0.15 |
 | 2026-11-08 | NDCG@10 vs model-proxy, 5 saved runs (replay) | mean 0.925 (min 0.891), ASI 0.843, critical recall 1.0. Largest gaps: GOLD-6 PCI DSS (proxy 2.5, agent rank ~11) and GOLD-16 TLS (proxy 3, agent rank 3–6) |
-| 2026-11-09 | `run_eval.py --runs 3` after ADR-0008 tuning (skill 4.4.0) | passed; NDCG@10 mean 0.971 (min 0.954), was 0.925; ASI 0.789 (top-5 set stable, order inside it shuffles); critical recall 1.0 |
+| 2026-11-09 | `run_eval.py --runs 3` after the compliance / operational-deadline rule (docs/adr/0005) | passed; NDCG@10 mean 0.971 (min 0.954), was 0.925; ASI 0.789 (top-5 set stable, order inside it shuffles); critical recall 1.0 |
 | 2026-11-09 | `run_eval.py --youtrack-url` (real YouTrack 2026.2 sandbox) | passed end to end on a real tracker: NDCG@10 0.936, all compliance checks (verbatim signals from the real API), critical recall 1.0; $0.55 |
 | 2026-11-09 | `run_eval.py` with skill 4.5.0 (`youtrack_count_issues` for rho) | passed; NDCG@10 0.963; session log confirms the agent used the count tool and adr_list/adr_read |
 | 2026-11-08 | `run_dialog_eval.py` (after fix) | passed 9/9: both refusals held, Reject raised GOLD-16 to U5 (rank 4 → 3), only GOLD-16 changed, Approve/Reject asked again; $2.53 |
@@ -81,7 +95,7 @@ family, and every report says so in its first line. Human labels, if ever collec
 ## Against the real YouTrack sandbox
 
 All three eval scripts accept `--youtrack-url` / `--youtrack-token` (or `YOUTRACK_SANDBOX_TOKEN`) to
-run the agent against the seeded sandbox (ADR-0007) instead of WireMock; data and checks are the same.
+run the agent against the seeded sandbox (`e2e/youtrack-sandbox`) instead of WireMock; data and checks are the same.
 
 ## Pilots
 

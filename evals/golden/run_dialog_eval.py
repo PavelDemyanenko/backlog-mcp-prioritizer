@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Multi-turn eval of the prioritization skill: refusal rules and the Reject branch (spec §8.4).
-On demand only (ADR-0006).
+On demand only, never in CI (evals/golden/README.md).
 
   docker compose -f docker-compose.e2e.yml up -d --wait wiremock && mvn -q -DskipTests package
   python3 -I evals/golden/run_dialog_eval.py --agent claude

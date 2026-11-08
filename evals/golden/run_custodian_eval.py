@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Golden eval for the adr-custodian skill (Mode A: backlog vs ADRs). On demand only (ADR-0006).
+"""Golden eval for the adr-custodian skill (Mode A: backlog vs ADRs). On demand only, never in CI.
 
   docker compose -f docker-compose.e2e.yml up -d --wait wiremock && mvn -q -DskipTests package
   python3 -I evals/golden/run_custodian_eval.py --agent claude

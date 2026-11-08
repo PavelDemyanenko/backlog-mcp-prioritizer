@@ -29,5 +29,5 @@ code extracts data and computes. Every number in a ranking must come from YouTra
 5. **Tool errors** go through `ToolResults.run` (curated message, no root-cause/HTTP body leak).
 6. **Spring beans and `@ConfigurationProperties` records** keep a single constructor (or mark one
    `@Autowired`): two public constructors broke startup twice.
-7. **Live LLM evals are on demand only** (ADR-0006); CI stays deterministic.
+7. **Live LLM evals are on demand only** (they cost tokens); CI stays deterministic.
 8. **Before handing over:** `mvn verify`, both Python test suites, `python3 -I evals/golden/build.py --check`.

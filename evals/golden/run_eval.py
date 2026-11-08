@@ -11,7 +11,7 @@
   # first live check before expert labels exist: rules + triage only, no NDCG / gold needed:
   python3 -I evals/golden/run_eval.py --agent claude --compliance-only
 
-Against the real YouTrack sandbox instead of WireMock (same GOLD data, ADR-0007):
+Against the real YouTrack sandbox instead of WireMock (same GOLD data, e2e/youtrack-sandbox):
   source e2e/youtrack-sandbox/.env && python3 -I evals/golden/run_eval.py --agent claude \
       --youtrack-url "$YOUTRACK_SANDBOX_URL"
 
