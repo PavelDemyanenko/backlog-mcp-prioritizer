@@ -1,0 +1,89 @@
+# E2E environment for the backlog MCP server.
+# Live YouTrack data is never used here: the tracker is mocked by WireMock (or the local sandbox).
+#
+#   docker compose -f docker-compose.e2e.yml up -d --build --wait wiremock
+#   # drive the STDIO server (stdin -> JSON-RPC requests, stdout -> JSON-RPC responses):
+#   docker compose -f docker-compose.e2e.yml run --rm -T mcp-server < requests.jsonl
+#   docker compose -f docker-compose.e2e.yml down -v
+
+name: backlog-mcp-e2e
+
+services:
+  wiremock:
+    image: wiremock/wiremock:3.13.2
+    command:
+      - --port=8080
+      - --global-response-templating
+      - --disable-banner
+      - --verbose
+    ports:
+      - "8089:8080"            # same default as youtrack.base-url for local runs
+    volumes:
+      - ./e2e/wiremock/mappings:/home/wiremock/mappings:ro
+      - ./e2e/wiremock/__files:/home/wiremock/__files:ro
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "http://localhost:8080/__admin/health"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+    networks: [e2e]
+
+  mcp-server:
+    build: .
+    image: backlog-mcp-server:e2e
+    stdin_open: true           # STDIO transport needs an open stdin
+    tty: false                 # a TTY would mangle JSON-RPC framing
+    environment:
+      YOUTRACK_BASE_URL: http://wiremock:8080
+      YOUTRACK_TOKEN: e2e-dummy-token
+      ADR_DIR: /adr
+    volumes:
+      - ./e2e/adr:/adr:ro
+    depends_on:
+      wiremock:
+        condition: service_healthy
+    networks: [e2e]
+
+
+  # ---- Real YouTrack sandbox (profile "sandbox"; not used by CI) ----
+  # Contract check of the WireMock fixtures against the real API:
+  #   docker compose -f docker-compose.e2e.yml --profile sandbox up -d --wait youtrack
+  #   python3 -I e2e/youtrack-sandbox/seed.py
+  #   source e2e/youtrack-sandbox/.env && mvn verify -Dit.test=YouTrackSandboxIT
+  # Local only: bound to 127.0.0.1, admin/admin, synthetic Golden Dataset data (no live tracker data).
+  youtrack-configure:
+    profiles: [sandbox]
+    image: jetbrains/youtrack:2026.2.19728
+    command: ["configure", "-J-Ddisable.configuration.wizard.on.clean.install=true",
+              "--base-url=http://127.0.0.1:8088"]
+    volumes: &youtrack-volumes
+      - youtrack-data:/opt/youtrack/data
+      - youtrack-conf:/opt/youtrack/conf
+      - youtrack-logs:/opt/youtrack/logs
+      - youtrack-backups:/opt/youtrack/backups
+
+  youtrack:
+    profiles: [sandbox]
+    image: jetbrains/youtrack:2026.2.19728
+    depends_on:
+      youtrack-configure:
+        condition: service_completed_successfully
+    ports:
+      - "127.0.0.1:8088:8080"
+    volumes: *youtrack-volumes
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "http://localhost:8080/api/config"]
+      interval: 5s
+      timeout: 5s
+      start_period: 30s
+      retries: 60
+    networks: [e2e]
+
+networks:
+  e2e: {}
+
+volumes:
+  youtrack-data: {}
+  youtrack-conf: {}
+  youtrack-logs: {}
+  youtrack-backups: {}

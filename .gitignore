@@ -1,0 +1,7 @@
+target/
+__pycache__/
+evals/golden/runs/
+.idea/
+*.iml
+.vscode/
+e2e/youtrack-sandbox/.env

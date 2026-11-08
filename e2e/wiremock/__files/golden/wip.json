@@ -1,0 +1,434 @@
+[
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-W1",
+    "summary": "Интеграция генератора с GitLab CI",
+    "description": "",
+    "tags": [],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "In Progress"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": []
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-W2",
+    "summary": "Метрики качества сгенерированного кода в портале",
+    "description": "",
+    "tags": [],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "In Progress"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": []
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-W3",
+    "summary": "Поддержка шаблонов для Go",
+    "description": "",
+    "tags": [],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "In Progress"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": []
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-W4",
+    "summary": "Перевод портала на SSO",
+    "description": "",
+    "tags": [],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "In Progress"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": []
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-W5",
+    "summary": "Нагрузочное тестирование сервиса генерации",
+    "description": "",
+    "tags": [],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "In Progress"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": []
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-W6",
+    "summary": "Аудит доступов к промптам",
+    "description": "",
+    "tags": [],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "In Progress"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": []
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-W7",
+    "summary": "Обновление модели для ревью кода",
+    "description": "",
+    "tags": [],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "In Progress"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": []
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-W8",
+    "summary": "Онбординг команды платежей",
+    "description": "",
+    "tags": [],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "In Progress"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": []
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-W9",
+    "summary": "Рефакторинг клиента векторного хранилища",
+    "description": "",
+    "tags": [],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "In Progress"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": []
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  }
+]

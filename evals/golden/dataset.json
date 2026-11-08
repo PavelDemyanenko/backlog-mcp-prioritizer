@@ -1,0 +1,668 @@
+{
+  "version": "1.1.0",
+  "as_of": "2026-11-05",
+  "tracker": "youtrack",
+  "project": "GOLD",
+  "context": "Development Center (DC): внутренняя платформа генерации кода на базе LLM (сервис генерации на Spring AI, MCP-серверы, шаблоны CI, портал разработчика). Платформой пользуются 40 продуктовых команд, подключено 28.",
+  "user_context": {
+    "capacity": 10,
+    "estimates": {
+      "GOLD-7": {
+        "opt": 8,
+        "real": 13,
+        "pess": 18
+      },
+      "GOLD-8": {
+        "opt": 10,
+        "real": 20,
+        "pess": 45
+      }
+    },
+    "triage_answers": {
+      "GOLD-15": {
+        "critical": false,
+        "answer": "Не инцидент: есть обходной путь (генерация по частям), простоя нет."
+      },
+      "GOLD-16": {
+        "critical": false,
+        "answer": "Не юридический срок: внутренний сертификат, продление штатное."
+      },
+      "GOLD-19": {
+        "critical": true,
+        "answer": "Подтверждаю: штраф по договору до 2 000 000 руб. при превышении квоты в ноябре."
+      }
+    },
+    "adr_present": [
+      "0015-use-spring-ai.md"
+    ]
+  },
+  "wip": [
+    {
+      "id": "GOLD-W1",
+      "summary": "Интеграция генератора с GitLab CI"
+    },
+    {
+      "id": "GOLD-W2",
+      "summary": "Метрики качества сгенерированного кода в портале"
+    },
+    {
+      "id": "GOLD-W3",
+      "summary": "Поддержка шаблонов для Go"
+    },
+    {
+      "id": "GOLD-W4",
+      "summary": "Перевод портала на SSO"
+    },
+    {
+      "id": "GOLD-W5",
+      "summary": "Нагрузочное тестирование сервиса генерации"
+    },
+    {
+      "id": "GOLD-W6",
+      "summary": "Аудит доступов к промптам"
+    },
+    {
+      "id": "GOLD-W7",
+      "summary": "Обновление модели для ревью кода"
+    },
+    {
+      "id": "GOLD-W8",
+      "summary": "Онбординг команды платежей"
+    },
+    {
+      "id": "GOLD-W9",
+      "summary": "Рефакторинг клиента векторного хранилища"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "GOLD-1",
+      "summary": "Подключить 12 продуктовых команд к генерации кода через DC",
+      "description": "Из 40 команд к платформе подключено 28. Оставшиеся 12 ждут поддержки их монорепозиториев. План раскатки и опрос команд: https://dc.atlassian.net/wiki/spaces/DC/pages/41001/Rollout-Q4. Ожидаемый эффект по опросу: минус 15-20% времени на типовой код.",
+      "state": "Open",
+      "type": "Feature",
+      "priority": "Major",
+      "tags": [
+        "rollout"
+      ],
+      "subsystem": [
+        "Platform"
+      ],
+      "due_date": null,
+      "story_points": 8,
+      "expected": {
+        "evidence_found_in_text": true,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "RICE: высокий охват, Tier 1"
+    },
+    {
+      "id": "GOLD-2",
+      "summary": "Кэширование ответов LLM для повторяющихся промптов",
+      "description": "p95 латентность генерации 4.2 с. По ощущениям команды, значительная часть запросов повторяется, кэш мог бы срезать задержку вдвое. Замеров доли повторов нет.",
+      "state": "To Do",
+      "type": "Feature",
+      "priority": "Normal",
+      "tags": [
+        "latency"
+      ],
+      "subsystem": [
+        "Generation"
+      ],
+      "due_date": null,
+      "story_points": 5,
+      "expected": {
+        "evidence_found_in_text": false,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Сильное заявление без доказательств: cap Impact 3, Confidence 0.5"
+    },
+    {
+      "id": "GOLD-3",
+      "summary": "CVE-2026-40211: RCE в библиотеке шаблонизатора",
+      "description": "В используемой версии шаблонизатора найдена удалённая уязвимость выполнения кода. NVD: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H, CVSS 3.x base score: 9.8. Публичный эксплойт существует. Исправлено в 4.7.2.",
+      "state": "Open",
+      "type": "Bug",
+      "priority": "Show-stopper",
+      "tags": [
+        "security"
+      ],
+      "subsystem": [
+        "Generation"
+      ],
+      "due_date": null,
+      "story_points": 3,
+      "expected": {
+        "evidence_found_in_text": false,
+        "cvss_score": 9.8,
+        "triage": "auto_critical",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Авто-CRITICAL по CVSS >= 9.0"
+    },
+    {
+      "id": "GOLD-4",
+      "summary": "Сервис генерации недоступен для команд в контуре Б",
+      "description": "С 09:40 все запросы из контура Б завершаются ошибкой 503, простой 35 минут и продолжается. Затронуто 9 команд.",
+      "state": "Open",
+      "type": "Incident",
+      "priority": "Show-stopper",
+      "tags": [
+        "outage"
+      ],
+      "subsystem": [
+        "Generation",
+        "Network"
+      ],
+      "due_date": null,
+      "story_points": null,
+      "expected": {
+        "evidence_found_in_text": false,
+        "cvss_score": null,
+        "triage": "auto_critical",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Авто-CRITICAL: P1 + Incident"
+    },
+    {
+      "id": "GOLD-5",
+      "summary": "Удалить персональные данные из логов аудита (152-ФЗ)",
+      "description": "В логах аудита сохраняются ФИО и телефоны пользователей портала. Юридическое заключение и срок устранения: https://docs.google.com/document/d/1LegalMemo152/edit",
+      "state": "Open",
+      "type": "Task",
+      "priority": "Critical",
+      "tags": [
+        "compliance",
+        "152-fz"
+      ],
+      "subsystem": [
+        "Audit"
+      ],
+      "due_date": "2026-11-25",
+      "story_points": 5,
+      "expected": {
+        "evidence_found_in_text": true,
+        "cvss_score": null,
+        "triage": "auto_critical",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Авто-CRITICAL: юридический срок через 20 дней"
+    },
+    {
+      "id": "GOLD-6",
+      "summary": "Подготовка платформы к аудиту PCI DSS",
+      "description": "Внешний аудит PCI DSS назначен на 15.02.2027. Требования к сегментации и журналированию: https://dc.atlassian.net/wiki/spaces/SEC/pages/52010/PCI-DSS-gap",
+      "state": "Open",
+      "type": "Task",
+      "priority": "Major",
+      "tags": [
+        "compliance",
+        "pci"
+      ],
+      "subsystem": [
+        "Security"
+      ],
+      "due_date": "2027-02-15",
+      "story_points": 13,
+      "expected": {
+        "evidence_found_in_text": true,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "WSJF: жёсткий внешний срок, но > 30 дней, поэтому ранжируется"
+    },
+    {
+      "id": "GOLD-7",
+      "summary": "Миграция сервиса генерации на Spring AI 2",
+      "description": "Решение принято в docs/adr/0015-use-spring-ai.md. Текущий самописный клиент LLM не поддерживает MCP и потоковую генерацию.",
+      "state": "Open",
+      "type": "Task",
+      "priority": "Major",
+      "tags": [
+        "architecture",
+        "tech-debt"
+      ],
+      "subsystem": [
+        "Generation"
+      ],
+      "due_date": null,
+      "story_points": 13,
+      "expected": {
+        "evidence_found_in_text": true,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "present",
+        "adr_refs": [
+          {
+            "id": "0015",
+            "status": "accepted"
+          }
+        ]
+      },
+      "scenario": "Архитектурная задача с существующим ADR: Tier 1; есть 3-точечная оценка (разброс 0.77)"
+    },
+    {
+      "id": "GOLD-8",
+      "summary": "Переписать оркестратор агентов на event sourcing",
+      "description": "Обсуждение вариантов: https://dc.atlassian.net/wiki/spaces/DC/pages/61200/Orchestrator-options. ADR пока не оформлен.",
+      "state": "Submitted",
+      "type": "Task",
+      "priority": "Normal",
+      "tags": [
+        "architecture",
+        "refactoring"
+      ],
+      "subsystem": [
+        "Agents"
+      ],
+      "due_date": null,
+      "story_points": 21,
+      "expected": {
+        "evidence_found_in_text": true,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "missing",
+        "adr_refs": []
+      },
+      "scenario": "Флаг true, но крупное архитектурное изменение без ADR -> Confidence 0.5; оценка требует декомпозиции (разброс 1.75)"
+    },
+    {
+      "id": "GOLD-9",
+      "summary": "Тёмная тема в портале разработчика",
+      "description": "Несколько человек попросили в общем чате.",
+      "state": "Submitted",
+      "type": "Feature",
+      "priority": "Minor",
+      "tags": [
+        "ui"
+      ],
+      "subsystem": [
+        "Portal"
+      ],
+      "due_date": null,
+      "story_points": 3,
+      "expected": {
+        "evidence_found_in_text": false,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Низкая ценность, без доказательств"
+    },
+    {
+      "id": "GOLD-10",
+      "summary": "Автогенерация unit-тестов для сгенерированного кода",
+      "description": "Пилот на 3 командах: покрытие сгенерированного кода тестами выросло с 41% до 59%, дефекты на ревью -22%. Отчёт: https://docs.google.com/spreadsheets/d/1PilotTests/edit",
+      "state": "Open",
+      "type": "Feature",
+      "priority": "Major",
+      "tags": [
+        "quality"
+      ],
+      "subsystem": [
+        "Generation"
+      ],
+      "due_date": null,
+      "story_points": 8,
+      "expected": {
+        "evidence_found_in_text": true,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Качество кода, сильные доказательства"
+    },
+    {
+      "id": "GOLD-11",
+      "summary": "Ускорить холодный старт MCP-сервера",
+      "description": "Холодный старт 6.5 с, агенты в CLI ждут до первого ответа. Evidence: профили JFR приложены к задаче, 70% времени уходит на сканирование классов.",
+      "state": "To Do",
+      "type": "Performance Problem",
+      "priority": "Normal",
+      "tags": [
+        "performance"
+      ],
+      "subsystem": [
+        "MCP"
+      ],
+      "due_date": null,
+      "story_points": 3,
+      "expected": {
+        "evidence_found_in_text": true,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Tier 1 по ключевому слову evidence"
+    },
+    {
+      "id": "GOLD-12",
+      "summary": "Экспорт метрик ранжирования в Grafana",
+      "description": "Хотим видеть NDCG@k и ASI на дашборде команды.",
+      "state": "Open",
+      "type": "Feature",
+      "priority": "Normal",
+      "tags": [
+        "observability"
+      ],
+      "subsystem": [
+        "Evals"
+      ],
+      "due_date": null,
+      "story_points": null,
+      "expected": {
+        "evidence_found_in_text": false,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Нет оценки -> NEEDS_ESTIMATE"
+    },
+    {
+      "id": "GOLD-13",
+      "summary": "Переименовать ключи в конфиге генератора в kebab-case",
+      "description": "Косметика: сейчас смешаны camelCase и kebab-case. На поведение не влияет.",
+      "state": "Submitted",
+      "type": "Cosmetics",
+      "priority": "Minor",
+      "tags": [],
+      "subsystem": [
+        "Generation"
+      ],
+      "due_date": null,
+      "story_points": 1,
+      "expected": {
+        "evidence_found_in_text": false,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Кандидат на нулевую ценность"
+    },
+    {
+      "id": "GOLD-14",
+      "summary": "Rate limiting для API генерации",
+      "description": "Постмортем инцидента 12.10: одна команда исчерпала квоту LLM за 20 минут, остальные получили отказ. https://dc.atlassian.net/wiki/spaces/DC/pages/70440/Postmortem-2026-10-12",
+      "state": "Open",
+      "type": "Bug",
+      "priority": "Critical",
+      "tags": [
+        "reliability"
+      ],
+      "subsystem": [
+        "Generation"
+      ],
+      "due_date": null,
+      "story_points": 5,
+      "expected": {
+        "evidence_found_in_text": true,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Надёжность, Tier 1; приоритет Critical не равен P1"
+    },
+    {
+      "id": "GOLD-15",
+      "summary": "Ошибка 500 при генерации файлов больше 2000 строк",
+      "description": "Воспроизводится у 3 команд. Обходной путь: генерировать по частям.",
+      "state": "Open",
+      "type": "Bug",
+      "priority": "Show-stopper",
+      "tags": [],
+      "subsystem": [
+        "Generation"
+      ],
+      "due_date": null,
+      "story_points": 3,
+      "expected": {
+        "evidence_found_in_text": false,
+        "cvss_score": null,
+        "triage": "candidate",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "P1-приоритет без инцидента -> кандидат, пользователь отвечает 'не критично'"
+    },
+    {
+      "id": "GOLD-16",
+      "summary": "Продлить TLS-сертификат внутреннего API генерации",
+      "description": "Сертификат истекает 15.11.2026. После истечения все клиенты получат ошибку TLS.",
+      "state": "Open",
+      "type": "Task",
+      "priority": "Major",
+      "tags": [
+        "infra"
+      ],
+      "subsystem": [
+        "Network"
+      ],
+      "due_date": "2026-11-15",
+      "story_points": 1,
+      "expected": {
+        "evidence_found_in_text": false,
+        "cvss_score": null,
+        "triage": "candidate",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Близкий срок без юр. метки -> кандидат; дешёвая задача с высокой срочностью"
+    },
+    {
+      "id": "GOLD-17",
+      "summary": "Поддержка Kotlin в генераторе кода",
+      "description": "Опрос: 37% команд пишут на Kotlin и не могут использовать генератор. Результаты: https://dc.atlassian.net/wiki/spaces/DC/pages/80112/Survey-languages",
+      "state": "Open",
+      "type": "Feature",
+      "priority": "Major",
+      "tags": [
+        "coverage"
+      ],
+      "subsystem": [
+        "Generation"
+      ],
+      "due_date": null,
+      "story_points": 13,
+      "expected": {
+        "evidence_found_in_text": true,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Большой охват, большая стоимость"
+    },
+    {
+      "id": "GOLD-18",
+      "summary": "Обновить Gradle в шаблонах проектов до 9.x",
+      "description": "Шаблоны используют Gradle 8.5, предупреждения о депрекейтах в каждой сборке.",
+      "state": "To Do",
+      "type": "Task",
+      "priority": "Normal",
+      "tags": [
+        "tech-debt"
+      ],
+      "subsystem": [
+        "Templates"
+      ],
+      "due_date": null,
+      "story_points": 2,
+      "expected": {
+        "evidence_found_in_text": false,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Мелкий техдолг, не крупное архитектурное изменение (ADR не нужен)"
+    },
+    {
+      "id": "GOLD-19",
+      "summary": "Ограничить расход токенов до лимита договора с вендором LLM",
+      "description": "По договору при превышении месячной квоты в ноябре штраф до 2 млн руб. Текущий расход 82% квоты на 5 ноября.",
+      "state": "Open",
+      "type": "Task",
+      "priority": "Critical",
+      "tags": [
+        "vendor",
+        "finance"
+      ],
+      "subsystem": [
+        "Billing"
+      ],
+      "due_date": null,
+      "story_points": 3,
+      "expected": {
+        "evidence_found_in_text": false,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Финансовый риск > 500 тыс. руб.: CRITICAL только через подтверждение пользователя"
+    },
+    {
+      "id": "GOLD-20",
+      "summary": "Документация по MCP-инструментам для продуктовых команд",
+      "description": "Команды не знают, какие инструменты доступны агентам.",
+      "state": "To Do",
+      "type": "Task",
+      "priority": "Normal",
+      "tags": [
+        "docs"
+      ],
+      "subsystem": [
+        "MCP"
+      ],
+      "due_date": null,
+      "story_points": 2,
+      "expected": {
+        "evidence_found_in_text": false,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Скорость разработки, без доказательств"
+    },
+    {
+      "id": "GOLD-21",
+      "summary": "Снизить p95 латентности генерации до 2 с",
+      "description": "SLA для внешних команд с 2027 года требует p95 <= 2 с, сейчас 4.2 с. SLA: https://docs.google.com/document/d/1SlaDraft2027/edit",
+      "state": "Open",
+      "type": "Performance Problem",
+      "priority": "Major",
+      "tags": [
+        "latency",
+        "sla"
+      ],
+      "subsystem": [
+        "Generation"
+      ],
+      "due_date": "2027-01-31",
+      "story_points": 8,
+      "expected": {
+        "evidence_found_in_text": true,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Латентность с доказательствами и внешним сроком"
+    },
+    {
+      "id": "GOLD-22",
+      "summary": "Песочница для запуска сгенерированного кода",
+      "description": "Сгенерированный код запускается в общем раннере. Похожая уязвимость у конкурента оценена в CVSS 3.x base score: 7.5.",
+      "state": "Open",
+      "type": "Feature",
+      "priority": "Major",
+      "tags": [
+        "security"
+      ],
+      "subsystem": [
+        "Runner"
+      ],
+      "due_date": null,
+      "story_points": 8,
+      "expected": {
+        "evidence_found_in_text": false,
+        "cvss_score": 7.5,
+        "triage": "none",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "CVSS ниже порога 9.0: не критично, ранжируется"
+    },
+    {
+      "id": "GOLD-23",
+      "summary": "Перевести внутренние вызовы на HTTP/2",
+      "description": "Решение будет оформлено в docs/adr/0031-http2.md. Ожидаем снижение накладных расходов на соединения.",
+      "state": "To Do",
+      "type": "Task",
+      "priority": "Normal",
+      "tags": [
+        "architecture"
+      ],
+      "subsystem": [
+        "Network"
+      ],
+      "due_date": null,
+      "story_points": 5,
+      "expected": {
+        "evidence_found_in_text": false,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "missing",
+        "adr_refs": [
+          {
+            "id": "0031",
+            "status": "missing"
+          }
+        ]
+      },
+      "scenario": "Ссылка на несуществующий ADR: не доказательство (флаг false), архитектурная задача без принятого ADR -> Confidence 0.5"
+    },
+    {
+      "id": "GOLD-24",
+      "summary": "Отчёт о расходе токенов по командам",
+      "description": "Evidence: запрос финансового департамента от 12.10.2026, нужно распределять затраты на LLM по командам.",
+      "state": "Open",
+      "type": "Feature",
+      "priority": "Normal",
+      "tags": [
+        "finance"
+      ],
+      "subsystem": [
+        "Billing"
+      ],
+      "due_date": null,
+      "story_points": 3,
+      "expected": {
+        "evidence_found_in_text": true,
+        "cvss_score": null,
+        "triage": "none",
+        "adr": "n/a",
+        "adr_refs": []
+      },
+      "scenario": "Прозрачность затрат, Tier 1 по ключевому слову"
+    }
+  ]
+}

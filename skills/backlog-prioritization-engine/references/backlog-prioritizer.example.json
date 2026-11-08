@@ -1,0 +1,17 @@
+{
+  "metrics": [
+    {"id": "revenue", "label": "Revenue or retention impact", "weight": 0.35},
+    {"id": "reach", "label": "Users / teams affected", "weight": 0.25},
+    {"id": "reliability", "label": "Reliability & stability", "weight": 0.20},
+    {"id": "dev_speed", "label": "Team delivery speed", "weight": 0.10},
+    {"id": "tech_risk", "label": "Security / compliance risk removed", "weight": 0.10}
+  ],
+  "risk_metric": "tech_risk",
+  "triage": {
+    "p1_priorities": ["Критичный", "Блокирующий"],
+    "incident_types": ["Инцидент", "Авария"],
+    "legal_markers": ["комплаенс", "юридическое", "аудит"],
+    "cvss_critical": 9.0,
+    "legal_deadline_days": 30
+  }
+}

@@ -1,0 +1,26 @@
+name: Bug report
+description: Something does not work as described
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes: {label: Version, description: "Release / image tag, e.g. 0.1.0"}
+    validations: {required: true}
+  - type: dropdown
+    id: host
+    attributes:
+      label: MCP host
+      options: [Claude Code, Cursor, Claude Desktop, Other]
+    validations: {required: true}
+  - type: input
+    id: youtrack
+    attributes: {label: YouTrack, description: "Cloud or Server, version if known"}
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: Steps, expected and actual result. Remove tokens and confidential issue content.
+    validations: {required: true}
+  - type: textarea
+    id: logs
+    attributes: {label: Server log (stderr), render: text}

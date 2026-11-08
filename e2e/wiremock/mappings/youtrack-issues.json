@@ -1,0 +1,49 @@
+{
+  "mappings": [
+    {
+      "name": "YouTrack: revoked/invalid permanent token",
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "urlPath": "/api/issues",
+        "headers": { "Authorization": { "equalTo": "Bearer invalid-token" } }
+      },
+      "response": {
+        "status": 401,
+        "headers": { "Content-Type": "application/json" },
+        "jsonBody": { "error": "Unauthorized", "error_description": "Invalid token" }
+      }
+    },
+    {
+      "name": "YouTrack: backlog search (frozen fixture)",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPath": "/api/issues",
+        "headers": {
+          "Authorization": { "matches": "Bearer .+" },
+          "Accept": { "contains": "application/json" }
+        },
+        "queryParameters": {
+          "query": { "matches": ".+" },
+          "fields": { "contains": "customFields" }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "bodyFileName": "youtrack/issues-backlog.json"
+      }
+    },
+    {
+      "name": "YouTrack: missing token",
+      "priority": 10,
+      "request": { "method": "GET", "urlPath": "/api/issues" },
+      "response": {
+        "status": 401,
+        "headers": { "Content-Type": "application/json" },
+        "jsonBody": { "error": "Unauthorized", "error_description": "You are not logged in." }
+      }
+    }
+  ]
+}

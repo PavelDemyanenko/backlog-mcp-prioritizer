@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  MCP STDIO CONTRACT: stdout carries JSON-RPC frames ONLY.
+  Every log event, from every logger and every level, goes to System.err.
+  Do NOT include Spring Boot's console-appender.xml / base.xml: they target System.out.
+-->
+<configuration scan="false">
+    <!-- Disable Logback's own status messages on stdout -->
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+
+    <springProperty scope="context" name="APP_NAME" source="spring.application.name" defaultValue="backlog-mcp-server"/>
+
+    <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.err</target>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [${APP_NAME}] [%thread] %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- Bounded async wrapper: blocking stderr writes never stall the JSON-RPC loop -->
+    <appender name="ASYNC_STDERR" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="STDERR"/>
+        <queueSize>1024</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <neverBlock>true</neverBlock>
+    </appender>
+
+    <logger name="io.modelcontextprotocol" level="INFO"/>
+    <logger name="org.springframework.ai.mcp" level="INFO"/>
+    <!-- noisy "not eligible for getting processed by all BeanPostProcessors" from MCP annotation scanner -->
+    <logger name="org.springframework.context.support.PostProcessorRegistrationDelegate" level="ERROR"/>
+
+    <root level="INFO">
+        <appender-ref ref="ASYNC_STDERR"/>
+    </root>
+</configuration>

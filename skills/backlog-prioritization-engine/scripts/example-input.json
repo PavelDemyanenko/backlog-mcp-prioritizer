@@ -1,0 +1,183 @@
+{
+  "as_of": "2026-11-05",
+  "team": {
+    "in_progress": 9,
+    "capacity": 10
+  },
+  "tasks": [
+    {
+      "id": "DEV-1",
+      "summary": "Migrate prioritization service to Spring AI",
+      "evidence_found_in_text": true,
+      "story_points": 5,
+      "story_points_source": "custom_field",
+      "impacts": {
+        "scaling": 4,
+        "code_quality": 4,
+        "reliability": 3,
+        "dev_speed": 3
+      },
+      "urgency": 3,
+      "triage": {
+        "issue_type": "Task",
+        "priority": "Major",
+        "labels": [
+          "architecture"
+        ],
+        "components": [
+          "Prioritization",
+          "MCP"
+        ],
+        "due_date": null,
+        "cvss_score": null
+      },
+      "architectural": true,
+      "adr_refs": [
+        {
+          "id": "0015",
+          "title": "Use Spring AI for the generation service",
+          "status": "accepted",
+          "superseded_by": null
+        }
+      ]
+    },
+    {
+      "id": "DEV-2",
+      "summary": "Add dark mode to settings page",
+      "evidence_found_in_text": false,
+      "story_points": 3,
+      "story_points_source": "custom_field",
+      "impacts": {
+        "scaling": 1,
+        "dev_speed": 0
+      },
+      "urgency": 1
+    },
+    {
+      "id": "DEV-3",
+      "summary": "GDPR: purge PII from audit logs",
+      "evidence_found_in_text": true,
+      "story_points": 8,
+      "story_points_source": "custom_field",
+      "impacts": {
+        "tech_risk": 5
+      },
+      "urgency": 5,
+      "triage": {
+        "issue_type": "Task",
+        "priority": "Critical",
+        "labels": [
+          "compliance",
+          "GDPR"
+        ],
+        "components": [
+          "Audit"
+        ],
+        "due_date": "2026-11-20",
+        "cvss_score": null
+      }
+    },
+    {
+      "id": "DEV-7",
+      "summary": "CVE-2026-31337: RCE in template engine",
+      "evidence_found_in_text": false,
+      "story_points": 3,
+      "story_points_source": "custom_field",
+      "impacts": {
+        "tech_risk": 5
+      },
+      "urgency": 5,
+      "triage": {
+        "issue_type": "Bug",
+        "priority": "Show-stopper",
+        "labels": [
+          "security"
+        ],
+        "components": [],
+        "due_date": null,
+        "cvss_score": 9.8
+      }
+    },
+    {
+      "id": "DEV-4",
+      "summary": "Refactor legacy billing module",
+      "evidence_found_in_text": false,
+      "story_points": null,
+      "impacts": {
+        "reliability": 3
+      },
+      "urgency": 2
+    },
+    {
+      "id": "DEV-5",
+      "summary": "Tech debt: replace cron scripts with a scheduler",
+      "evidence_found_in_text": true,
+      "story_points": 13,
+      "story_points_source": "custom_field",
+      "impacts": {
+        "reliability": 4,
+        "tech_risk": 3,
+        "dev_speed": 2
+      },
+      "urgency": 3,
+      "estimate3": {
+        "opt": 8,
+        "real": 10,
+        "pess": 25
+      },
+      "architectural": true,
+      "adr_refs": [
+        {
+          "id": "0007",
+          "title": "Use a managed scheduler for background jobs",
+          "status": "accepted",
+          "superseded_by": null
+        }
+      ]
+    },
+    {
+      "id": "DEV-6",
+      "summary": "Onboarding checklist for new tenants",
+      "evidence_found_in_text": true,
+      "story_points": 2.5,
+      "story_points_source": "custom_field",
+      "impacts": {
+        "scaling": 3,
+        "dev_speed": 1
+      },
+      "urgency": 3
+    },
+    {
+      "id": "OPS-3",
+      "summary": "Export invoices to CSV",
+      "evidence_found_in_text": false,
+      "story_points": 2,
+      "story_points_source": "time_estimate_fallback",
+      "impacts": {
+        "scaling": 5,
+        "performance": 2
+      },
+      "urgency": 2
+    },
+    {
+      "id": "OPS-4",
+      "summary": "Investigate flaky nightly build",
+      "evidence_found_in_text": false,
+      "story_points": 2,
+      "story_points_source": "custom_field",
+      "impacts": {
+        "reliability": 2,
+        "dev_speed": 2
+      },
+      "urgency": 2,
+      "triage": {
+        "issue_type": "Bug",
+        "priority": "Blocker",
+        "labels": [],
+        "components": [],
+        "due_date": "2026-11-12",
+        "cvss_score": null
+      }
+    }
+  ]
+}

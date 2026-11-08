@@ -1,0 +1,54 @@
+{
+  "mappings": [
+    {
+      "name": "Golden: WIP count for rho (project GOLD, In Progress)",
+      "priority": 2,
+      "request": {
+        "method": "GET",
+        "urlPath": "/api/issues",
+        "headers": {
+          "Authorization": {
+            "matches": "Bearer .+"
+          }
+        },
+        "queryParameters": {
+          "query": {
+            "matches": "(?s).*project:\\s*GOLD\\b.*In Progress.*"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyFileName": "golden/wip.json"
+      }
+    },
+    {
+      "name": "Golden: backlog (project GOLD)",
+      "priority": 3,
+      "request": {
+        "method": "GET",
+        "urlPath": "/api/issues",
+        "headers": {
+          "Authorization": {
+            "matches": "Bearer .+"
+          }
+        },
+        "queryParameters": {
+          "query": {
+            "matches": "(?s)(?!.*In Progress).*project:\\s*GOLD\\b.*"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyFileName": "golden/backlog.json"
+      }
+    }
+  ]
+}

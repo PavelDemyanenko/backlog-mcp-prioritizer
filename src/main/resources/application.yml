@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: backlog-mcp-prioritizer
+  main:
+    web-application-type: none   # STDIO only: no embedded server
+    banner-mode: off             # the banner is printed to stdout -> would corrupt JSON-RPC
+  ai:
+    mcp:
+      server:
+        name: backlog-mcp-prioritizer
+        version: 0.1.0
+        type: SYNC
+        stdio: true              # StdioServerTransportProvider over System.in / System.out
+        capabilities:
+          tool: true
+          resource: false
+          prompt: false
+          completion: false
+
+logging:
+  config: classpath:logback-spring.xml
+
+# Read-only tracker endpoints (overridden in E2E to point at WireMock)
+youtrack:
+  base-url: ${YOUTRACK_BASE_URL:http://localhost:8089}
+  token: ${YOUTRACK_TOKEN:}       # permanent token -> Authorization: Bearer <token>
+  connect-timeout: 5s
+  read-timeout: 30s
+  max-limit: 100                  # hard cap for the tool's `limit`
+  minutes-per-story-point: ${YOUTRACK_MINUTES_PER_STORY_POINT:480}    # "Estimation" fallback when Story points is empty (1d = 480 min); 0 = off
+
+mcp:
+  http:
+    # Always direct (never via HTTP(S)_PROXY): localhost, 127.*, ::1, *.localhost, wiremock,
+    # host.docker.internal + NO_PROXY entries. Add more hosts here if needed.
+    no-proxy-hosts: []
+
+
+adr:
+  dir: ${ADR_DIR:docs/adr}   # ADR references count as evidence only if the ADR exists here and is accepted
+  max-read-chars: 20000

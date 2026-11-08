@@ -1,0 +1,5 @@
+# Repository is LF everywhere, independent of local core.autocrlf.
+* text=auto eol=lf
+
+# Expert labeling sheets are CRLF + BOM on purpose (Excel ru-RU); keep bytes as-is.
+evals/golden/labeling/*.csv -text

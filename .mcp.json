@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "backlog": {
+      "type": "stdio",
+      "command": "java",
+      "args": [
+        "-jar",
+        "target/backlog-mcp-server.jar"
+      ],
+      "env": {
+        "YOUTRACK_BASE_URL": "${YOUTRACK_BASE_URL:-http://localhost:8089}",
+        "YOUTRACK_TOKEN": "${YOUTRACK_TOKEN:-}",
+        "ADR_DIR": "${ADR_DIR:-docs/adr}"
+      }
+    }
+  }
+}

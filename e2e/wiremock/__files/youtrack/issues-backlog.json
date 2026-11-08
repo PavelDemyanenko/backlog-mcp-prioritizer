@@ -1,0 +1,253 @@
+[
+  {
+    "$type": "Issue",
+    "idReadable": "DEV-1",
+    "summary": "Migrate prioritization service to Spring AI",
+    "description": "Approved in ADR docs/adr/0015-use-spring-ai.md. PRD: https://company.atlassian.net/wiki/spaces/PROD/pages/123",
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "To Do"
+        }
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 5
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Major"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Prioritization"
+          },
+          {
+            "$type": "OwnedBundleElement",
+            "name": "MCP"
+          }
+        ]
+      }
+    ],
+    "tags": [
+      {
+        "name": "architecture"
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "DEV-2",
+    "summary": "Add dark mode to settings page",
+    "description": "Users asked for it, probably.",
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "DEV-3",
+    "summary": "GDPR: purge PII from audit logs",
+    "description": "Compliance deadline Q1. Evidence: https://docs.google.com/document/d/abc123/edit",
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "In Progress"
+        }
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 8
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Critical"
+        }
+      },
+      {
+        "$type": "SingleOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": {
+          "$type": "OwnedBundleElement",
+          "name": "Audit"
+        }
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": 1795176000000
+      }
+    ],
+    "tags": [
+      {
+        "name": "compliance"
+      },
+      {
+        "name": "GDPR"
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "DEV-4",
+    "summary": "Refactor legacy billing module",
+    "description": null,
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "To Do"
+        }
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": null
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "DEV-5",
+    "summary": "Tech debt: replace cron scripts with a scheduler",
+    "description": "Decision recorded in /docs/adr/0007-scheduler.md, see diagram in the wiki.",
+    "customFields": [
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Major"
+        }
+      },
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Story Points",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "13"
+        }
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "DEV-6",
+    "summary": "Onboarding checklist for new tenants",
+    "description": "Customer evidence collected in 12 support tickets last quarter.",
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "To Do"
+        }
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 2.5
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "DEV-7",
+    "summary": "CVE-2026-31337: RCE in template engine",
+    "description": "NVD vector CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H, CVSS 3.x base score: 9.8. Exploit is public.",
+    "tags": [
+      {
+        "name": "security"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Bug"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Show-stopper"
+        }
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  }
+]

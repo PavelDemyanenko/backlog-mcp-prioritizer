@@ -1,0 +1,264 @@
+{
+  "dataset_version": "1.1.0",
+  "source": "model-proxy",
+  "experts": [
+    "sonnet-5-5",
+    "haiku-5-5"
+  ],
+  "relevance_kappa": 0.7443,
+  "tasks": {
+    "GOLD-1": {
+      "critical": false,
+      "relevance": 3,
+      "urgency": 3,
+      "impact_scaling": 4.5,
+      "impact_code_quality": 1,
+      "impact_latency": 0,
+      "impact_reliability": 0.5,
+      "impact_performance": 0.5,
+      "impact_dev_speed": 3.5,
+      "impact_tech_risk": 0.5
+    },
+    "GOLD-2": {
+      "critical": false,
+      "relevance": 1,
+      "urgency": 1.5,
+      "impact_scaling": 0.5,
+      "impact_code_quality": 0,
+      "impact_latency": 2,
+      "impact_reliability": 0,
+      "impact_performance": 1.5,
+      "impact_dev_speed": 0.5,
+      "impact_tech_risk": 0.5
+    },
+    "GOLD-3": {
+      "critical": true
+    },
+    "GOLD-4": {
+      "critical": true
+    },
+    "GOLD-5": {
+      "critical": true
+    },
+    "GOLD-6": {
+      "critical": false,
+      "relevance": 2.5,
+      "urgency": 4,
+      "impact_scaling": 1,
+      "impact_code_quality": 0.5,
+      "impact_latency": 0,
+      "impact_reliability": 1,
+      "impact_performance": 0,
+      "impact_dev_speed": 0.5,
+      "impact_tech_risk": 4
+    },
+    "GOLD-7": {
+      "critical": false,
+      "relevance": 2,
+      "urgency": 2.5,
+      "impact_scaling": 2.5,
+      "impact_code_quality": 2,
+      "impact_latency": 1.5,
+      "impact_reliability": 1.5,
+      "impact_performance": 1.5,
+      "impact_dev_speed": 3,
+      "impact_tech_risk": 1.5
+    },
+    "GOLD-8": {
+      "critical": false,
+      "relevance": 1,
+      "urgency": 1,
+      "impact_scaling": 1,
+      "impact_code_quality": 1,
+      "impact_latency": 0.5,
+      "impact_reliability": 2,
+      "impact_performance": 1,
+      "impact_dev_speed": 1,
+      "impact_tech_risk": 1
+    },
+    "GOLD-9": {
+      "critical": false,
+      "relevance": 0.5,
+      "urgency": 1,
+      "impact_scaling": 1,
+      "impact_code_quality": 0,
+      "impact_latency": 0,
+      "impact_reliability": 0,
+      "impact_performance": 0,
+      "impact_dev_speed": 0.5,
+      "impact_tech_risk": 0
+    },
+    "GOLD-10": {
+      "critical": false,
+      "relevance": 2.5,
+      "urgency": 2.5,
+      "impact_scaling": 2,
+      "impact_code_quality": 4,
+      "impact_latency": 0,
+      "impact_reliability": 1.5,
+      "impact_performance": 0,
+      "impact_dev_speed": 2,
+      "impact_tech_risk": 0.5
+    },
+    "GOLD-11": {
+      "critical": false,
+      "relevance": 2.5,
+      "urgency": 2,
+      "impact_scaling": 0.5,
+      "impact_code_quality": 0,
+      "impact_latency": 3,
+      "impact_reliability": 0.5,
+      "impact_performance": 4,
+      "impact_dev_speed": 1.5,
+      "impact_tech_risk": 0
+    },
+    "GOLD-12": {
+      "critical": false,
+      "relevance": 1,
+      "urgency": 1,
+      "impact_scaling": 0.5,
+      "impact_code_quality": 0,
+      "impact_latency": 0,
+      "impact_reliability": 0,
+      "impact_performance": 0,
+      "impact_dev_speed": 1,
+      "impact_tech_risk": 0
+    },
+    "GOLD-13": {
+      "critical": false,
+      "relevance": 0,
+      "urgency": 1,
+      "impact_scaling": 0,
+      "impact_code_quality": 0.5,
+      "impact_latency": 0,
+      "impact_reliability": 0,
+      "impact_performance": 0,
+      "impact_dev_speed": 0.5,
+      "impact_tech_risk": 0.5
+    },
+    "GOLD-14": {
+      "critical": false,
+      "relevance": 3,
+      "urgency": 4,
+      "impact_scaling": 2,
+      "impact_code_quality": 0,
+      "impact_latency": 0.5,
+      "impact_reliability": 4,
+      "impact_performance": 0.5,
+      "impact_dev_speed": 0.5,
+      "impact_tech_risk": 1.5
+    },
+    "GOLD-15": {
+      "critical": false,
+      "relevance": 1.5,
+      "urgency": 2,
+      "impact_scaling": 0.5,
+      "impact_code_quality": 2,
+      "impact_latency": 0,
+      "impact_reliability": 2,
+      "impact_performance": 0,
+      "impact_dev_speed": 1,
+      "impact_tech_risk": 0
+    },
+    "GOLD-16": {
+      "critical": false,
+      "relevance": 3,
+      "urgency": 5,
+      "impact_scaling": 1,
+      "impact_code_quality": 0,
+      "impact_latency": 0,
+      "impact_reliability": 3,
+      "impact_performance": 0,
+      "impact_dev_speed": 0,
+      "impact_tech_risk": 1
+    },
+    "GOLD-17": {
+      "critical": false,
+      "relevance": 2.5,
+      "urgency": 2.5,
+      "impact_scaling": 4.5,
+      "impact_code_quality": 0.5,
+      "impact_latency": 0,
+      "impact_reliability": 0,
+      "impact_performance": 0,
+      "impact_dev_speed": 1.5,
+      "impact_tech_risk": 0
+    },
+    "GOLD-18": {
+      "critical": false,
+      "relevance": 1,
+      "urgency": 1,
+      "impact_scaling": 0,
+      "impact_code_quality": 0.5,
+      "impact_latency": 0,
+      "impact_reliability": 0,
+      "impact_performance": 0,
+      "impact_dev_speed": 1,
+      "impact_tech_risk": 1.5
+    },
+    "GOLD-19": {
+      "critical": true
+    },
+    "GOLD-20": {
+      "critical": false,
+      "relevance": 1.5,
+      "urgency": 1.5,
+      "impact_scaling": 2,
+      "impact_code_quality": 0,
+      "impact_latency": 0,
+      "impact_reliability": 0,
+      "impact_performance": 0,
+      "impact_dev_speed": 1.5,
+      "impact_tech_risk": 0
+    },
+    "GOLD-21": {
+      "critical": false,
+      "relevance": 2.5,
+      "urgency": 4,
+      "impact_scaling": 2,
+      "impact_code_quality": 0,
+      "impact_latency": 4,
+      "impact_reliability": 1,
+      "impact_performance": 2.5,
+      "impact_dev_speed": 1,
+      "impact_tech_risk": 0.5
+    },
+    "GOLD-22": {
+      "critical": false,
+      "relevance": 1.5,
+      "urgency": 2.5,
+      "impact_scaling": 0.5,
+      "impact_code_quality": 0,
+      "impact_latency": 0,
+      "impact_reliability": 1,
+      "impact_performance": 0,
+      "impact_dev_speed": 0,
+      "impact_tech_risk": 2.5
+    },
+    "GOLD-23": {
+      "critical": false,
+      "relevance": 1,
+      "urgency": 1,
+      "impact_scaling": 0,
+      "impact_code_quality": 0,
+      "impact_latency": 1,
+      "impact_reliability": 0,
+      "impact_performance": 1,
+      "impact_dev_speed": 0,
+      "impact_tech_risk": 0
+    },
+    "GOLD-24": {
+      "critical": false,
+      "relevance": 2,
+      "urgency": 2.5,
+      "impact_scaling": 1,
+      "impact_code_quality": 0,
+      "impact_latency": 0,
+      "impact_reliability": 0,
+      "impact_performance": 0.5,
+      "impact_dev_speed": 0.5,
+      "impact_tech_risk": 1
+    }
+  },
+  "auto_resolved": []
+}

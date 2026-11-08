@@ -1,0 +1,1384 @@
+[
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-1",
+    "summary": "Подключить 12 продуктовых команд к генерации кода через DC",
+    "description": "Из 40 команд к платформе подключено 28. Оставшиеся 12 ждут поддержки их монорепозиториев. План раскатки и опрос команд: https://dc.atlassian.net/wiki/spaces/DC/pages/41001/Rollout-Q4. Ожидаемый эффект по опросу: минус 15-20% времени на типовой код.",
+    "tags": [
+      {
+        "name": "rollout"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Feature"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Major"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Platform"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 8
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-2",
+    "summary": "Кэширование ответов LLM для повторяющихся промптов",
+    "description": "p95 латентность генерации 4.2 с. По ощущениям команды, значительная часть запросов повторяется, кэш мог бы срезать задержку вдвое. Замеров доли повторов нет.",
+    "tags": [
+      {
+        "name": "latency"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "To Do"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Feature"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Generation"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-3",
+    "summary": "CVE-2026-40211: RCE в библиотеке шаблонизатора",
+    "description": "В используемой версии шаблонизатора найдена удалённая уязвимость выполнения кода. NVD: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H, CVSS 3.x base score: 9.8. Публичный эксплойт существует. Исправлено в 4.7.2.",
+    "tags": [
+      {
+        "name": "security"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Bug"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Show-stopper"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Generation"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-4",
+    "summary": "Сервис генерации недоступен для команд в контуре Б",
+    "description": "С 09:40 все запросы из контура Б завершаются ошибкой 503, простой 35 минут и продолжается. Затронуто 9 команд.",
+    "tags": [
+      {
+        "name": "outage"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Incident"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Show-stopper"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Generation"
+          },
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Network"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": null
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-5",
+    "summary": "Удалить персональные данные из логов аудита (152-ФЗ)",
+    "description": "В логах аудита сохраняются ФИО и телефоны пользователей портала. Юридическое заключение и срок устранения: https://docs.google.com/document/d/1LegalMemo152/edit",
+    "tags": [
+      {
+        "name": "compliance"
+      },
+      {
+        "name": "152-fz"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Critical"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Audit"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": 1795608000000
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-6",
+    "summary": "Подготовка платформы к аудиту PCI DSS",
+    "description": "Внешний аудит PCI DSS назначен на 15.02.2027. Требования к сегментации и журналированию: https://dc.atlassian.net/wiki/spaces/SEC/pages/52010/PCI-DSS-gap",
+    "tags": [
+      {
+        "name": "compliance"
+      },
+      {
+        "name": "pci"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Major"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Security"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": 1802692800000
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 13
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-7",
+    "summary": "Миграция сервиса генерации на Spring AI 2",
+    "description": "Решение принято в docs/adr/0015-use-spring-ai.md. Текущий самописный клиент LLM не поддерживает MCP и потоковую генерацию.",
+    "tags": [
+      {
+        "name": "architecture"
+      },
+      {
+        "name": "tech-debt"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Major"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Generation"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 13
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-8",
+    "summary": "Переписать оркестратор агентов на event sourcing",
+    "description": "Обсуждение вариантов: https://dc.atlassian.net/wiki/spaces/DC/pages/61200/Orchestrator-options. ADR пока не оформлен.",
+    "tags": [
+      {
+        "name": "architecture"
+      },
+      {
+        "name": "refactoring"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Submitted"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Agents"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 21
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-9",
+    "summary": "Тёмная тема в портале разработчика",
+    "description": "Несколько человек попросили в общем чате.",
+    "tags": [
+      {
+        "name": "ui"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Submitted"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Feature"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Minor"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Portal"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-10",
+    "summary": "Автогенерация unit-тестов для сгенерированного кода",
+    "description": "Пилот на 3 командах: покрытие сгенерированного кода тестами выросло с 41% до 59%, дефекты на ревью -22%. Отчёт: https://docs.google.com/spreadsheets/d/1PilotTests/edit",
+    "tags": [
+      {
+        "name": "quality"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Feature"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Major"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Generation"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 8
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-11",
+    "summary": "Ускорить холодный старт MCP-сервера",
+    "description": "Холодный старт 6.5 с, агенты в CLI ждут до первого ответа. Evidence: профили JFR приложены к задаче, 70% времени уходит на сканирование классов.",
+    "tags": [
+      {
+        "name": "performance"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "To Do"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Performance Problem"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "MCP"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-12",
+    "summary": "Экспорт метрик ранжирования в Grafana",
+    "description": "Хотим видеть NDCG@k и ASI на дашборде команды.",
+    "tags": [
+      {
+        "name": "observability"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Feature"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Evals"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": null
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-13",
+    "summary": "Переименовать ключи в конфиге генератора в kebab-case",
+    "description": "Косметика: сейчас смешаны camelCase и kebab-case. На поведение не влияет.",
+    "tags": [],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Submitted"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Cosmetics"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Minor"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Generation"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-14",
+    "summary": "Rate limiting для API генерации",
+    "description": "Постмортем инцидента 12.10: одна команда исчерпала квоту LLM за 20 минут, остальные получили отказ. https://dc.atlassian.net/wiki/spaces/DC/pages/70440/Postmortem-2026-10-12",
+    "tags": [
+      {
+        "name": "reliability"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Bug"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Critical"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Generation"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-15",
+    "summary": "Ошибка 500 при генерации файлов больше 2000 строк",
+    "description": "Воспроизводится у 3 команд. Обходной путь: генерировать по частям.",
+    "tags": [],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Bug"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Show-stopper"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Generation"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-16",
+    "summary": "Продлить TLS-сертификат внутреннего API генерации",
+    "description": "Сертификат истекает 15.11.2026. После истечения все клиенты получат ошибку TLS.",
+    "tags": [
+      {
+        "name": "infra"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Major"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Network"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": 1794744000000
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-17",
+    "summary": "Поддержка Kotlin в генераторе кода",
+    "description": "Опрос: 37% команд пишут на Kotlin и не могут использовать генератор. Результаты: https://dc.atlassian.net/wiki/spaces/DC/pages/80112/Survey-languages",
+    "tags": [
+      {
+        "name": "coverage"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Feature"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Major"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Generation"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 13
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-18",
+    "summary": "Обновить Gradle в шаблонах проектов до 9.x",
+    "description": "Шаблоны используют Gradle 8.5, предупреждения о депрекейтах в каждой сборке.",
+    "tags": [
+      {
+        "name": "tech-debt"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "To Do"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Templates"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-19",
+    "summary": "Ограничить расход токенов до лимита договора с вендором LLM",
+    "description": "По договору при превышении месячной квоты в ноябре штраф до 2 млн руб. Текущий расход 82% квоты на 5 ноября.",
+    "tags": [
+      {
+        "name": "vendor"
+      },
+      {
+        "name": "finance"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Critical"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Billing"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-20",
+    "summary": "Документация по MCP-инструментам для продуктовых команд",
+    "description": "Команды не знают, какие инструменты доступны агентам.",
+    "tags": [
+      {
+        "name": "docs"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "To Do"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "MCP"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-21",
+    "summary": "Снизить p95 латентности генерации до 2 с",
+    "description": "SLA для внешних команд с 2027 года требует p95 <= 2 с, сейчас 4.2 с. SLA: https://docs.google.com/document/d/1SlaDraft2027/edit",
+    "tags": [
+      {
+        "name": "latency"
+      },
+      {
+        "name": "sla"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Performance Problem"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Major"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Generation"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": 1801396800000
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 8
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-22",
+    "summary": "Песочница для запуска сгенерированного кода",
+    "description": "Сгенерированный код запускается в общем раннере. Похожая уязвимость у конкурента оценена в CVSS 3.x base score: 7.5.",
+    "tags": [
+      {
+        "name": "security"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Feature"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Major"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Runner"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 8
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-23",
+    "summary": "Перевести внутренние вызовы на HTTP/2",
+    "description": "Решение будет оформлено в docs/adr/0031-http2.md. Ожидаем снижение накладных расходов на соединения.",
+    "tags": [
+      {
+        "name": "architecture"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "To Do"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Task"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Network"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "$type": "Issue",
+    "idReadable": "GOLD-24",
+    "summary": "Отчёт о расходе токенов по командам",
+    "description": "Evidence: запрос финансового департамента от 12.10.2026, нужно распределять затраты на LLM по командам.",
+    "tags": [
+      {
+        "name": "finance"
+      }
+    ],
+    "customFields": [
+      {
+        "$type": "StateIssueCustomField",
+        "name": "State",
+        "value": {
+          "$type": "StateBundleElement",
+          "name": "Open"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Type",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Feature"
+        }
+      },
+      {
+        "$type": "SingleEnumIssueCustomField",
+        "name": "Priority",
+        "value": {
+          "$type": "EnumBundleElement",
+          "name": "Normal"
+        }
+      },
+      {
+        "$type": "MultiOwnedIssueCustomField",
+        "name": "Subsystem",
+        "value": [
+          {
+            "$type": "OwnedBundleElement",
+            "name": "Billing"
+          }
+        ]
+      },
+      {
+        "$type": "DateIssueCustomField",
+        "name": "Due Date",
+        "value": null
+      },
+      {
+        "$type": "SimpleIssueCustomField",
+        "name": "Story points",
+        "value": 3
+      }
+    ]
+  }
+]
