@@ -3,7 +3,10 @@
 A real session from the pilot (2026-11-09): Claude Code with the skill, the MCP server pointed at a
 **real YouTrack 2026.2** ([sandbox](../e2e/youtrack-sandbox/README.md)) holding project `GOLD`, the
 synthetic 24-issue backlog of the [Golden Dataset](../evals/golden/dataset.json). The ranking was
-approved. Issue titles are in Russian in the dataset; they are translated in the tables below. Reproduce the numbers yourself:
+approved. Issue titles are in Russian in the dataset; they are translated in the tables below.
+The report shown here is recomputed with the current tie rule
+([ADR-0007](adr/0007-relative-tie-rule.md)); the pilot approved the same scores under the older
+2-decimal rule, which ordered ranks 6–9 and 14–18 slightly differently. Reproduce the numbers yourself:
 
 ```bash
 python3 -I skills/backlog-prioritization-engine/scripts/priority.py docs/example/prio-input.json
@@ -46,8 +49,8 @@ calculator: YouTrack data copied verbatim from the tools plus the agent's Impact
 | 3 | GOLD-1 Onboard 12 product teams | NO | 0.33 (Conf:1.0) | 3 | 24.00 (×3.0) | **0.11** | Tier 1 |
 | 4 | GOLD-16 Renew the internal API TLS certificate | NO | 0.04 (Conf:0.5) | 5 | 3.00 (×3.0) | **0.09** | Tier 3-4 |
 | 5 | GOLD-11 Faster MCP server cold start | NO | 0.18 (Conf:1.0) | 2 | 9.00 (×3.0) | **0.08** | Tier 1 |
-| 6 | GOLD-10 Generate unit tests for generated code | NO | 0.22 (Conf:1.0) | 3 | 24.00 (×3.0) | **0.07** | Tier 1 |
-| 7 | GOLD-6 Prepare the platform for the PCI DSS audit | NO | 0.24 (Conf:1.0) | 4 | 39.00 (×3.0) | **0.07** | compliance rule applied |
+| 6 | GOLD-6 Prepare the platform for the PCI DSS audit | NO | 0.24 (Conf:1.0) | 4 | 39.00 (×3.0) | **0.07** | compliance rule applied |
+| 7 | GOLD-10 Generate unit tests for generated code | NO | 0.22 (Conf:1.0) | 3 | 24.00 (×3.0) | **0.07** | Tier 1 |
 | … | 11 more ranked, see [ranking.md](example/ranking.md) | | | | | | |
 
 Not ranked: GOLD-9 and GOLD-13 (zero value), GOLD-12 (no estimate).
@@ -72,12 +75,12 @@ V = (0.30*2 + 0.15*4 + 0.05*3) / 5 * 1.0 = 0.27;  C = 5 * 3.0 = 15;  P = 0.27 * 
 P = 0.04 * 5 / 3^0.7 = 0.093
 ```
 
-**GOLD-6, rank 7.** Audit preparation removes a compliance risk (tech_risk 4). With the default weights that is only 5 % of Value (V = 0.07). The compliance rule counts it like the top metric:
+**GOLD-6, rank 6.** Audit preparation removes a compliance risk (tech_risk 4). With the default weights that is only 5 % of Value (V = 0.07). The compliance rule counts it like the top metric:
 ```
 V = 0.30*4 / 5 * 1.0 = 0.24
 ```
 
-**GOLD-8, rank 17.** A large architectural rewrite. It has a Confluence link, but no accepted ADR → Confidence 0.5 ([ADR-0004](adr/0004-adr-links-count-only-if-accepted.md)). At 21 SP × 3.0 it is also the most expensive item.
+**GOLD-8, rank 16.** A large architectural rewrite. It has a Confluence link, but no accepted ADR → Confidence 0.5 ([ADR-0004](adr/0004-adr-links-count-only-if-accepted.md)). At 21 SP × 3.0 it is also the most expensive item.
 
 **GOLD-23.** The ticket links `ADR-0031`, which does not exist in the repo (`adr_refs: missing`). Not evidence, and the note in the report says so.
 
@@ -92,22 +95,21 @@ V = 0.30*4 / 5 * 1.0 = 0.24
 - after them, take GOLD-14;
 - renew the certificate (1 SP) before its date.
 
-## 4. A known quirk visible here
+## 4. Ties
 
-At ρ = 3.0 every priority shrinks by 3^0.7 ≈ 2.2, so the tie rule ("equal at 2 decimals → lower cost
-wins") fires more often:
-- GOLD-6 (P = 0.0739) and GOLD-10 (P = 0.0714) both round to 0.07, so the cheaper GOLD-10 ranks
-  above GOLD-6.
-- GOLD-22 (P = 0.0146) ranks below GOLD-23 (P = 0.0053) only because both round to 0.01.
+Two tasks whose priorities are within 1% of each other count as equal, and the cheaper one goes
+first (the report notes "tie with … (within 1%)"). The comparison is relative, so the queueing
+penalty, which scales every priority by the same factor, never reorders tasks. GOLD-6 (P = 0.0739)
+stays above GOLD-10 (P = 0.0714) although both display as 0.07: they are 3.4% apart.
 
-With a lower load the same tasks do not tie and the order differs at ranks 6–9 and 14–18 (see the
-next section). The team's load should scale all priorities equally, not reorder them; this is an
-open issue.
+An earlier version rounded priorities to 2 decimals before comparing. At ρ = 3.0 that created
+artificial ties and moved ranks 6–9 and 14–18 with the team's load; see
+[ADR-0007](adr/0007-relative-tie-rule.md).
 
 ## 5. Try it on your project
 
 Change the team capacity in `example/prio-input.json` (`"capacity": 3` → `12`) and re-run the
-calculator. The penalty drops from ×3.0 to ×1.0 and the recommendation changes. Because of the tie
-rule in section 4, the order also changes at ranks 6–9 and 14–18; the top five stay the same.
+calculator. The penalty drops from ×3.0 to ×1.0, every priority grows by the same factor
+(3^0.7 ≈ 2.2) and the capacity recommendation changes; the order stays exactly the same.
 
 To use your own metrics or localized triage names, add `.backlog-prioritizer.json` ([configuration](../skills/backlog-prioritization-engine/references/configuration.md)).

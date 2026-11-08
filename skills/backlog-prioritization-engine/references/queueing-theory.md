@@ -27,10 +27,9 @@ calendar time when the team is saturated.
 | > 0.95 | × 3.0 |
 
 ## What the penalty changes, and what it does not
-All tasks in one backlog share the team's ρ, so the multiplier scales every C equally. In exact
-arithmetic it would not change the order. The tie rule (equal at 2 decimals → lower C wins)
-compares rounded values, though, so a high penalty creates more ties and can reorder close items;
-see `docs/example.md`, section 4. It changes:
+All tasks in one backlog share the team's ρ, so the multiplier scales every C equally and **does not
+change the order** within that ranking (ties are compared relatively, within 1%, so a common factor
+cannot create or break them). It changes:
 - the absolute Priority values (comparable across teams and over time, e.g. for drift tracking);
 - the capacity recommendation: at ρ > 0.85 the right move is to finish work, not start more.
 

@@ -129,6 +129,30 @@ class DocsExample(unittest.TestCase):
         self.assertEqual(out.getvalue(), (example / "ranking.md").read_text(encoding="utf-8"))
 
 
+class TieRule(unittest.TestCase):
+    def test_within_one_percent_lower_cost_wins_beyond_it_priority_wins(self):
+        close = run([task(id="A", story_points=5.05), task(id="B", story_points=5.0)])   # ~0.7% apart
+        self.assertEqual([s["id"] for s in close["ranked"]], ["B", "A"])
+        self.assertIn("within 1%", " ".join(close["ranked"][1]["notes"]))
+        items = [{"id": "X", "priority": 1.0, "cost": 9, "notes": []},
+                 {"id": "Y", "priority": 0.98, "cost": 1, "notes": []}]          # 2% apart: no tie
+        self.assertEqual([i["id"] for i in p.rank_with_ties(items)], ["X", "Y"])
+
+    def test_order_does_not_depend_on_the_queueing_penalty(self):
+        data = json.loads((HERE / "example-input.json").read_text())
+        orders = []
+        for team in ({"rho": 0.5}, {"rho": 0.9}, {"rho": 3.0}):
+            orders.append([s["id"] for s in p.run({**data, "team": team})["ranked"]])
+        self.assertEqual(orders[0], orders[1])
+        self.assertEqual(orders[0], orders[2])
+
+    def test_groups_are_anchored_to_the_top_so_chains_do_not_merge(self):
+        # 1.000, 0.995, 0.985: Y is within 1% of the top X (tie, cheaper first); Z is 1.5% below: own group
+        items = [{"id": i, "priority": pr, "cost": c, "notes": []}
+                 for i, pr, c in (("X", 1.0, 9), ("Y", 0.995, 1), ("Z", 0.985, 0.5))]
+        self.assertEqual([s["id"] for s in p.rank_with_ties(items)], ["Y", "X", "Z"])
+
+
 class ComplianceRisk(unittest.TestCase):
     def test_compliance_risk_counts_like_the_top_metric(self):
         plain = run([task(impacts={"tech_risk": 4, "reliability": 1})])["ranked"][0]

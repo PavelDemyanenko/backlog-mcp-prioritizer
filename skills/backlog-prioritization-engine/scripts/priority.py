@@ -9,7 +9,7 @@ and enforces the non-negotiable rules, so rankings are reproducible (anti-drift,
   impact_i <= 3 when evidence_found_in_text is false            (hard cap)
   C        = base_cost * queue_penalty(rho)                     (penalty never skippable)
   base_cost= PERT (opt + 4*real + pess) / 6 if a 3-point estimate is given, else story_points
-  Priority = (V * U) / C^0.7 ; ties at 2 decimals -> lower C wins, then id
+  Priority = (V * U) / C^0.7 ; ties (within 1% of the group's top priority) -> lower C wins, then id
 
 Critical triage from the tool's `triage` signals (deterministic, relative to input `as_of`):
   auto-CRITICAL: cvss_score >= 9.0 | P1 priority + incident type | legal marker + due in < 30 days
@@ -39,6 +39,9 @@ DEFAULT_WEIGHTS = {  # globally shared team weights, sum = 1.0 (override: --conf
 WEIGHTS = dict(DEFAULT_WEIGHTS)
 NO_EVIDENCE_IMPACT_CAP = 3
 COST_EXPONENT = 0.7
+# Priorities within this relative distance of a tie group's top are "equal": lower C wins.
+# Relative, not rounded, so a common factor (the queueing penalty) never changes the order.
+TIE_RELATIVE = 0.01
 UNCERTAINTY_LIMIT = 1.0
 
 DEFAULT_CVSS_CRITICAL = 9.0
@@ -302,6 +305,27 @@ def score_task(t: dict, penalty: float, as_of: dt.date | None = None) -> dict:
     return out
 
 
+def rank_with_ties(items: list[dict]) -> list[dict]:
+    """Sort by exact priority; consecutive items within TIE_RELATIVE of their group's top form a tie
+    group, ordered by lower C, then id. Scale-invariant: multiplying every priority and cost by the
+    same factor (the queueing penalty) yields the same order."""
+    groups: list[list[dict]] = []
+    for s in sorted(items, key=lambda s: (-s["priority"], s["id"])):
+        if groups and s["priority"] >= groups[-1][0]["priority"] * (1 - TIE_RELATIVE):
+            groups[-1].append(s)
+        else:
+            groups.append([s])
+    ranked = []
+    for group in groups:
+        ordered = sorted(group, key=lambda s: (s["cost"], s["id"]))
+        for s in ordered[1:]:
+            s["notes"].append(f"tie with {ordered[0]['id']} (within {TIE_RELATIVE:.0%}): lower C wins")
+        ranked += ordered
+    for rank, s in enumerate(ranked, 1):
+        s["rank"] = rank
+    return ranked
+
+
 def run(data: dict) -> dict:
     as_of = None
     if data.get("as_of"):
@@ -319,13 +343,7 @@ def run(data: dict) -> dict:
         raise InputError("task ids must be unique")
 
     scored = [score_task(t, penalty, as_of) for t in tasks]
-    ranked = sorted((s for s in scored if s["status"] == "RANKED"),
-                    key=lambda s: (-s["priority_2dp"], s["cost"], s["id"]))
-    for rank, s in enumerate(ranked, 1):
-        s["rank"] = rank
-    for a, b in zip(ranked, ranked[1:]):
-        if a["priority_2dp"] == b["priority_2dp"]:
-            b["notes"].append(f"tie with {a['id']} at {a['priority_2dp']:.2f}: lower C wins")
+    ranked = rank_with_ties([s for s in scored if s["status"] == "RANKED"])
     return {
         "queue": {"rho": round(rho, 4), "penalty": penalty, "trace": rho_trace},
         "critical": [s for s in scored if s["status"] == "CRITICAL"],

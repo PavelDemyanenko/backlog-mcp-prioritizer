@@ -120,7 +120,7 @@ permission for the calculator. If the run is denied, stop and report it; never c
 numbers yourself.
 
 It enforces rules 2–4, the uncertainty check ((pess − opt)/real > 1.0 → decomposition required),
-PERT cost, `Priority = (V × U) / C^0.7` and the tie-breaker (equal at 2 decimals → lower C wins).
+PERT cost, `Priority = (V × U) / C^0.7` and the tie-breaker (priorities within 1% → lower C wins).
 Exit code 2 means invalid input: fix the input, never the rules.
 
 ## Step 6. Report
