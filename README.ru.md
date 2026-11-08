@@ -117,6 +117,11 @@ MCP-клиент (Claude Code, Cursor, …) ──stdio──▶ backlog-mcp-pri
 
 За прокси или с YouTrack на `localhost`: см. [docs/tools.md](docs/tools.md#network).
 
+## Пример
+
+Полная сессия на настоящем YouTrack: диалог, таблица ранжирования, как читать каждый столбец и
+расчёт; воспроизводится одной командой: [docs/example.md](docs/example.md) (на английском).
+
 ## Что читается из YouTrack
 
 | Сигнал | Откуда в YouTrack |

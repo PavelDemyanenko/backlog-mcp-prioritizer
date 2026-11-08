@@ -114,6 +114,21 @@ class CostAndRanking(unittest.TestCase):
         self.assertEqual(r["queue"]["penalty"], 1.5)
 
 
+class DocsExample(unittest.TestCase):
+    """docs/example.md must stay reproducible: the saved report equals the calculator's output."""
+
+    def test_saved_example_output_matches_calculator(self):
+        import contextlib, io
+        root = HERE.parents[2]
+        example = root / "docs/example"
+        if not example.exists():
+            self.skipTest("installed skill without the repository docs")
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            self.assertEqual(p.main(["priority.py", str(example / "prio-input.json")]), 0)
+        self.assertEqual(out.getvalue(), (example / "ranking.md").read_text(encoding="utf-8"))
+
+
 class ComplianceRisk(unittest.TestCase):
     def test_compliance_risk_counts_like_the_top_metric(self):
         plain = run([task(impacts={"tech_risk": 4, "reliability": 1})])["ranked"][0]

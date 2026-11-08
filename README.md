@@ -122,6 +122,11 @@ and **Python 3.10+** for the calculator. Everything is prebuilt in the
 
 Behind a proxy or with YouTrack on `localhost`: see [docs/tools.md](docs/tools.md#network).
 
+## Example
+
+A full session on a real YouTrack: the conversation, the ranked table, how to read every column and
+the math, reproducible with one command: [docs/example.md](docs/example.md).
+
 ## What it reads from YouTrack
 
 | Signal | Source in YouTrack |
